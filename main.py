@@ -1,21 +1,41 @@
+import datetime
 import discord
+from discord.ext import commands
 
 # declare intents
 intents = discord.Intents.default()
 intents.message_content = True
 
-# initiate client
-client = discord.Client(intents=intents)
+# initiate client and commands
+bot = commands.Bot(command_prefix = "!", intents=intents)
 
-@client.event
-async def on_message(message):
-    if message.content.lower() == "!help":
-        await message.channel.send\
-            ("""Commands:
-             !help - opens the help menu.
-                                   """)
-        
+# lets set up some important texts
+# this is the help screen
+f = open("help.txt")
+helpText = f.read()
+f.close()
+
+# using the command api
+# the arguments in the command are:
+# "ctx" is the current channel
+# "member : discord.Member" is the member specified in the second argument
+
+# ban
+@bot.command()
+async def ban(ctx, member : discord.Member, reason): #get the member as the second argument
+    await member.ban(reason = reason)
+    banMessage = "@" + str(member) + " " + "was banned with reason:" + " " + reason
+    await ctx.send(banMessage)
+
+# timeout
+@bot.command()
+async def timeout(ctx, member : discord.Member, timeInHours):
+    await member.timeout(datetime.timedelta(hours=int(timeInHours)))
+
+# run the bot below here, dont modify
+
 f = open("token.txt")
 token = f.read()
+f.close()
 
-client.run(token)
+bot.run(token)
