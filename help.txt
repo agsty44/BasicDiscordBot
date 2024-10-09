@@ -1,2 +1,0 @@
-Commands:
-!plshelp - opens the help menu.
