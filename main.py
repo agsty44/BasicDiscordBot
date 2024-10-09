@@ -28,7 +28,7 @@ async def ban(ctx, member : discord.Member, reason): #get the member as the seco
     await member.ban(reason = reason)
     banMessage = "@" + str(member) + " was banned with reason: " + reason
     await ctx.send(banMessage)
-    logbook.write("Time: " + str(datetime.time) + " User: " + str(member) + " Action: Ban")
+    logbook.write("\nTime: " + str(datetime.time) + " User: " + str(member) + " Action: Ban")
 
 # timeout
 @bot.command()
@@ -36,7 +36,7 @@ async def timeout(ctx, member : discord.Member, timeInHours):
     await member.timeout(datetime.timedelta(hours=int(timeInHours)))
     timeoutMessage = "@" + str(member) + " was timed out for: " + str(timeInHours) + " hours"
     await ctx.send(timeoutMessage)
-    logbook.write("Time: " + str(datetime.time) + " User: " + str(member) + " Action: Timeout")
+    logbook.write("\nTime: " + str(datetime.time) + " User: " + str(member) + " Action: Timeout")
 
 # kick
 @bot.command()
@@ -44,14 +44,14 @@ async def kick(ctx, member : discord.Member):
     await member.kick()
     kickMessage = "@" + str(member) + " was kicked"
     await ctx.send(kickMessage)
-    logbook.write("Time: " + str(datetime.time) + " User: " + str(member) + " Action: Kick")
+    logbook.write("\nTime: " + str(datetime.time) + " User: " + str(member) + " Action: Kick")
 
 # warn
 @bot.command()
 async def warn(ctx, member : discord.Member, reason):
     warnMessage = "@" + str(member) + " has been warned for: " + reason
     await ctx.send(warnMessage)
-    logbook.write("Time: " + str(datetime.time) + " User: " + str(member) + " Action: Warn")
+    logbook.write("\nTime: " + str(datetime.time) + " User: " + str(member) + " Action: Warn")
 
 # run the bot below here, dont modify
 
